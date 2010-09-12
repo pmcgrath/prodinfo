@@ -16,7 +16,7 @@ end
 
 get '/ted' do
 	page_source = "<html>"
-	page_source += "	<h1>Ted</h1>"
+	page_source += "	<h1>Your ip is #{@env['REMOTE_ADDR']}</h1>"
 	page_source += "</html>"
 
 	page_source
