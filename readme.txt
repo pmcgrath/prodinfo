@@ -5,9 +5,17 @@ See
 	http://gembundler.com/sinatra.html
 
 
+To clone content use
+	git clone git@heroku.com:blooming-sky-54.git
+
+
+To see all git config use 
+	git config --list
+
+
 Can run locally with a specific port rather than a random port using
 	rackup --port 5678
-Open http://127.0.0.1:5678/ to see app
+	Open http://127.0.0.1:5678/ to see app
 
 
 Needed to install Heroku
