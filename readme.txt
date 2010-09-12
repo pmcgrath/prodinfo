@@ -3,6 +3,13 @@ See
 	http://github.com/sinatra/heroku-sinatra-app 
 	http://docs.heroku.com/bundler
 	http://gembundler.com/sinatra.html
+	http://docs.heroku.com/heroku-command
+	http://github.com/guides/git-cheat-sheet
+
+
+To setup
+	git init
+	heroku create
 
 
 To clone content use
@@ -20,6 +27,13 @@ Can run locally with a specific port rather than a random port using
 
 Needed to install Heroku
 	gem install heroku
+Other commands
+	heroku info     --> Will show app info
+	heroku info     --> Will open current app in browser
+	heroku logs     --> Log info
+	heroku config   --> Environment vars
+	heroku stack    --> Shows current stack info - mri version etc
+	heroku addons	--> Current addons installed if any
 
 
 Need to install the following gems
