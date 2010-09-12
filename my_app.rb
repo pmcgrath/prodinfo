@@ -13,3 +13,10 @@ end
 get '/' do
   "We're in !"
 end
+
+
+get '/ted' do
+  "<html>"
+  "	<h1>Ted</h1>"
+  "</html>"
+end
