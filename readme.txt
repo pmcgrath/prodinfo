@@ -5,7 +5,12 @@ See
 	http://gembundler.com/sinatra.html
 	http://docs.heroku.com/heroku-command
 	http://github.com/guides/git-cheat-sheet
-	*** Debugging http://ruby.about.com/od/advancedruby/a/debugging.htm
+
+
+Debugging
+	http://ruby.about.com/od/advancedruby/a/debugging.htm
+	http://pivotallabs.com/users/chad/blog/articles/366-ruby-debug-in-30-seconds-we-don-t-need-no-stinkin-gui-
+
 
 To setup
 	git init
