@@ -15,8 +15,16 @@ get '/' do
 end
 
 get '/ted' do
+	
+
 	page_source = "<html>"
-	page_source += "	<h1>Your user agent is #{@env['HTTP_USER_AGENT']} and IP is #{@env['REMOTE_ADDR']}</h1>"
+
+	page_source += "	<h2>Url is #{request.url}</h2>"
+	page_source += "	<br/>"
+	page_source += "	<h2>Your user agent is #{@env['HTTP_USER_AGENT']}</h2>"
+	page_source += "	<br/>"
+	page_source += "	<h2>Your IP is #{@env['REMOTE_ADDR']}</h2>"
+	page_source += "	<br/>"
 	page_source += "</html>"
 
 	page_source
