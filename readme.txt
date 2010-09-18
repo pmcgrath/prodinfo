@@ -55,4 +55,22 @@ Ran bundle install - would have taken care of the gems above i'm guessing - will
 
 Used git to push all including the Gemfile.lock
 	git push heroku master
-	
+
+
+Pending
+	git-wiki sinatra
+	rifgraf   web service  Adam wiggins
+	github-services  post recieve hooks
+	scanty - blogging s/w
+	sequel ORM
+	Justin Gehtland - Relevance Small things looslely joined, written fast
+	Net::HTTP use RestClient instead
+	heroku-client 
+	couchrest - ruby client	
+	taps
+	integrity
+	remi rack screencast
+	ruby-prof  - profiler
+	couchpotato - ruby wrapper library for couchdb
+	gem unpack heroku
+	gibberish::simple -localisation library
