@@ -25,7 +25,6 @@ get '/ted' do
 	page_source += "	<br/>"
 	page_source += "	<h2>Your IP is #{@env['REMOTE_ADDR']}</h2>"
 	page_source += "	<br/>"
-	page_source += "	#{ENV['DATABASE_URL']}<br/>"
 	page_source += "</html>"
 
 	page_source
