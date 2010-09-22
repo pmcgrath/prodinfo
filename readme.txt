@@ -1,4 +1,3 @@
-
 See
 	http://sinatra-book.gittr.com/			
 	http://github.com/sinatra/heroku-sinatra-app 
@@ -6,6 +5,7 @@ See
 	http://gembundler.com/sinatra.html
 	http://docs.heroku.com/heroku-command
 	http://github.com/guides/git-cheat-sheet
+	http://haml-lang.com/   see also http://nex-3.com/posts/103-haml-and-sass-are-split
 
 
 Debugging
@@ -46,13 +46,15 @@ Need to install the following gems
 	bundler (1.0.0)
 	rack (1.2.1)
 	sinatra (1.0)
+	haml (haml-3.0.18)
+Can use to see versions
+	gem which haml
 
-
+	
 Needed to create Gemfile in the root for bundler
 
-
 Ran bundle install - would have taken care of the gems above i'm guessing - will need to test
-
+	To update i found bundle update failed, so i had to delete the gemfile.lock and run bundle install again
 
 Used git to push all including the Gemfile.lock
 	git push heroku master
