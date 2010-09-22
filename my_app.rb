@@ -11,21 +11,15 @@ configure :production do
 end
 
 get '/' do
-  	"We're in !"
+  	haml :index
 end
 
 get '/ted' do
+	content = {
+		'Url' 					=> request.url,
+		'Your user agent is' 	=> @env['HTTP_USER_AGENT'],
+		'Your IP is' 			=> @env['REMOTE_ADDR']
+	}
 	
-
-	page_source = "<html>"
-
-	page_source += "	<h2>Url is #{request.url}</h2>"
-	page_source += "	<br/>"
-	page_source += "	<h2>Your user agent is #{@env['HTTP_USER_AGENT']}</h2>"
-	page_source += "	<br/>"
-	page_source += "	<h2>Your IP is #{@env['REMOTE_ADDR']}</h2>"
-	page_source += "	<br/>"
-	page_source += "</html>"
-
-	page_source
+	haml :ted, :locals => { :content => content }
 end
