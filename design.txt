@@ -1,0 +1,9 @@
+Urls
+/				List of products
+					Will need to be able to add, edit, delete products
+/product			Actual product's applications
+					Will need to be able to add, edit, delete applications
+/product/application		Application
+					Will need to be able to select an environment - possibly client side ?
+					Will need to be able to add, edit, delete settings
+		
