@@ -1,9 +1,9 @@
 class Product
-	attr :id, :name
+	attr :id, :name1
 
-	def initialize(id, name)
+	def initialize(id, name1)
 		@id = id 
-		@name = name
+		@name1 = name1
 	end
 
 	def alias
