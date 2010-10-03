@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'lib/product'
+require 'lib/application'
 
 
 configure :production do
@@ -13,6 +14,8 @@ end
 
 get '/' do
 	@products = Product.all
+	@applications = Application.all
+
   	haml :index
 end
 
