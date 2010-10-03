@@ -7,7 +7,7 @@ class Product
 	end
 
 	def alias
-		@name.gsub(/ /,'').downcase
+		@name1.gsub(/ /,'').downcase
 	end
 
 	def self.all
