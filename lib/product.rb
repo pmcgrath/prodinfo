@@ -1,5 +1,6 @@
 class Product
-	attr :id, :name
+	attr :id
+	attr :name		# Heroku would not allow me to place all in a single line, even though it works fine locally
 
 	def initialize(id, name)
 		@id = id 
