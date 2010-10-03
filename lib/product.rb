@@ -1,14 +1,14 @@
 class Product
-	attr :id 
-	attr :name1
+	attr :id
+	attr :name
 
-	def initialize(id, name1)
+	def initialize(id, name)
 		@id = id 
-		@name1 = name1
+		@name = name
 	end
 
 	def alias
-		@name1.gsub(/ /,'').downcase
+		@name.gsub(/ /,'').downcase
 	end
 
 	def self.all
