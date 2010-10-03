@@ -1,5 +1,6 @@
 class Product
-	attr :id, :name1
+	attr :id 
+	attr :name1
 
 	def initialize(id, name1)
 		@id = id 
