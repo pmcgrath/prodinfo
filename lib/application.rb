@@ -1,8 +1,5 @@
 class Application
-	# Heroku would not allow me to place all in a single line, even though it works fine locally
-	attr :id
-	attr :product_id
-	attr :name
+	attr_accessor :id, :product_id, :name
 
 	def initialize(id, product_id, name)
 		@id = id 
