@@ -28,3 +28,10 @@ get '/ted' do
 	
 	haml :ted, :locals => { :content => content }
 end
+
+get '/:product_alias' do
+	products = Product.all
+	@product = products.find { |product| product.alias == params[:product_alias] }
+
+	haml :product
+end

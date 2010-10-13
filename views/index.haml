@@ -1,14 +1,7 @@
 Index page ...
 %a{:href => '/ted'} Visit Ted
 %br
+%h1 Products
 - for product in @products
-	#id= product.id
-	#name= product.name
-	#alias= product.alias
-
-	- product_applications = @applications.find_all { |application| application.product_id == product.id }
-	- for application in product_applications
-		#application_id= application.id
-		#application_name= application.name		
-		
+	%a{:href => "/#{product.alias}"} "#{product.name}"
 	%br

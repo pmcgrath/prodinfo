@@ -1,0 +1,11 @@
+Product page
+%br
+#id= @product.id
+#name= @product.name
+#alias= @product.alias
+
+%h2 Applications
+- for application in @product.applications
+	#application_id= application.id
+	#application_name= application.name
+	%br
