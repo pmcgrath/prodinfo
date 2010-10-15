@@ -13,25 +13,14 @@ configure :production do
 end
 
 get '/' do
-	@products = Product.all
-	@applications = Application.all
-
-  	haml :index
-end
-
-get '/ted' do
-	content = {
-		'Url' 					=> request.url,
-		'Your user agent is' 	=> @env['HTTP_USER_AGENT'],
-		'Your IP is' 			=> @env['REMOTE_ADDR']
-	}
+	products = Product.all
 	
-	haml :ted, :locals => { :content => content }
+  	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
 end
 
 get '/:product_alias' do
 	products = Product.all
-	@product = products.find { |product| product.alias == params[:product_alias] }
+	product = products.find { |product| product.alias == params[:product_alias] }
 
-	haml :product
+	haml :product, :locals => { :page_title => product.name, :product => product }
 end

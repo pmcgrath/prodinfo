@@ -1,7 +1,8 @@
-Index page ...
-%a{:href => '/ted'} Visit Ted
 %br
+
 %h1 Products
-- for product in @products
+- for product in products
 	%a{:href => "/#{product.alias}"} "#{product.name}"
 	%br
+
+%br

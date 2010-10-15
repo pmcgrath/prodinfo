@@ -24,9 +24,9 @@ class Product
 
 	def applications
 		all_product_applications = Application.all
-		current_product_applications = all_product_applications.find_all { |application| application.product_id == @id }
+		current_products_applications = all_product_applications.find_all { |application| application.product_id == @id }
 
-		current_product_applications
+		current_products_applications
 	end
 end
 
