@@ -2,7 +2,7 @@
 
 %h1 Products
 - for product in products
-	%a{:href => "/#{product.alias}"} "#{product.name}"
+	%a{:href => "/#{product.alias}"}&= product.name
 	%br
 
 %br
