@@ -2,8 +2,6 @@
 # Use sessions to generate and store cookies with timeouts
 # HAML - how do i generate a form - urls
 # try to run html2haml t.html t.haml - in ~/temp looking for hpicrot gem
-#
-
 
 
 require 'rubygems'
