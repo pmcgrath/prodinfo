@@ -5,7 +5,8 @@
 		%link{:href => "default.css", :rel => "stylesheet", :type => "text/css"}
 	%body
 		#header
-			logo ...
+			%a{:href => "/"}= 'Home'
+			#user= user_name
 		#pagecontent
 			= yield
 		#footer

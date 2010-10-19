@@ -8,19 +8,25 @@ require 'rubygems'
 require 'sinatra'
 require 'lib/product'
 require 'lib/application'
+require 'lib/user'
+require 'lib/cookie_key'
+
 
 configure do
 	# Pending ...
 end
 
 helpers do
-	def administrator?
-		request.cookies['my_session_id_cookie_key'] == 'pass_broke'
+	def user_name
+		request.cookies[CookieKey::User_name]
+	end
+
+	def logged_in?
+		!user_name().nil?
 	end
 
 	def ensure_authorised_for_action
-		redirect '/login', 301 unless administrator?
-#		stop [ 401, 'Not authorized' ] unless administrator?
+		redirect '/login', 301 unless logged_in?
 	end
 
 	def set_cookie_value(key, value)
@@ -29,8 +35,6 @@ helpers do
 end
 
 get '/' do
-	set_cookie_value('my_session_id_cookie_key', 'pass')
-	
 	products = Product.all
 	
   	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
@@ -44,8 +48,10 @@ post '/login' do
 	user_name = params[:user_name]
 	password = params[:password]
 	
-	is_authenticated = ((user_name == 'pmcg') and (password == 'pass'))
+	is_authenticated = User.authenticate(user_name, password)
 	redirect '/login', 302 unless is_authenticated
+
+	set_cookie_value(CookieKey::User_name, user_name)
 
 	redirect '/'
 end
