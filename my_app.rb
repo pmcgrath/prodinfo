@@ -11,7 +11,6 @@ require 'lib/application'
 require 'lib/user'
 require 'lib/cookie_key'
 
-
 configure do
 	# Pending ...
 end
@@ -40,6 +39,13 @@ get '/' do
   	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
 end
 
+post '/' do
+	product_name = params[:product_name]
+	
+	product_name
+#  	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
+end
+
 get '/login' do
 	haml :login, :locals => { :page_title => 'Log in' }
 end
@@ -61,6 +67,8 @@ get '/:product_alias' do
 
 	products = Product.all
 	product = products.find { |product| product.alias == params[:product_alias] }
+	
+	halt 404, "Unknown product!" if product.nil? 
 
 	haml :product, :locals => { :page_title => product.name, :product => product }
 end
