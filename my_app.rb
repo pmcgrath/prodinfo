@@ -13,11 +13,12 @@ require 'lib/cookie_key'
 
 configure do
 	# Pending ...
+	set :sessions, true
 end
 
 helpers do
 	def user_name
-		request.cookies[CookieKey::User_name]
+		session[CookieKey::User_name]
 	end
 
 	def logged_in?
@@ -57,8 +58,8 @@ post '/login' do
 	is_authenticated = User.authenticate(user_name, password)
 	redirect '/login', 302 unless is_authenticated
 
-	set_cookie_value(CookieKey::User_name, user_name)
-
+	session[CookieKey::User_name] = user_name
+	
 	redirect '/'
 end
 

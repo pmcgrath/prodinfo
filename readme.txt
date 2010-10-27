@@ -13,6 +13,15 @@ Debugging
 	http://pivotallabs.com/users/chad/blog/articles/366-ruby-debug-in-30-seconds-we-don-t-need-no-stinkin-gui-
 
 
+Git
+	Installed git - sudo apt-get install git
+	Installed gitk - sudo apt-get install git
+	http://yehudakatz.com/2010/05/13/common-git-workflows/
+	To reset to last commit - git reset head --hard
+	To visually see diffs 
+		install kompare or such tool using sudo apt-get install kompare
+		then - git difftool --tool kompare 
+
 To setup
 	git init
 	heroku create
@@ -22,7 +31,7 @@ To clone content use
 	git clone git@heroku.com:blooming-sky-54.git
 
 
-To see all git config use 
+To see all git config
 	git config --list
 
 
