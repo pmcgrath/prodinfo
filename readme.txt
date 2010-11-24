@@ -6,6 +6,12 @@ See
 	http://docs.heroku.com/heroku-command
 	http://github.com/guides/git-cheat-sheet
 	http://haml-lang.com/   see also http://nex-3.com/posts/103-haml-and-sass-are-split
+	http://blog.logeek.fr/2010/6/29/sinatra-heroku-mongodb-mongohq-notes
+
+
+Stack
+	Can see heroku stack using heroku stack
+	I switched to bamboo-mri-1.9.1 using - heroku stack:migrate bamboo-mri-1.9.1
 
 
 Debugging

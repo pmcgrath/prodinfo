@@ -2,8 +2,6 @@
 # Use sessions to generate and store cookies with timeouts
 # HAML - how do i generate a form - urls
 # try to run html2haml t.html t.haml - in ~/temp looking for hpicrot gem
-
-
 require 'rubygems'
 require 'sinatra'
 require 'lib/product'
@@ -11,10 +9,12 @@ require 'lib/application'
 require 'lib/user'
 require 'lib/cookie_key'
 
+
 configure do
 	# Pending ...
 	set :sessions, true
 end
+
 
 helpers do
 	def user_name
@@ -34,11 +34,13 @@ helpers do
 	end
 end
 
+
 get '/' do
 	products = Product.all
 	
   	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
 end
+
 
 post '/' do
 	product_name = params[:product_name]
@@ -47,9 +49,11 @@ post '/' do
 #  	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
 end
 
+
 get '/login' do
 	haml :login, :locals => { :page_title => 'Log in' }
 end
+
 
 post '/login' do
 	user_name = params[:user_name]
@@ -62,6 +66,7 @@ post '/login' do
 	
 	redirect '/'
 end
+
 
 get '/:product_alias' do
 	ensure_authorised_for_action
