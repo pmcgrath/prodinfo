@@ -7,7 +7,7 @@ require 'sinatra'
 require 'lib/product'
 require 'lib/application'
 require 'lib/user'
-require 'lib/cookie_key' 
+require 'lib/cookie_key'
 
 
 configure do
