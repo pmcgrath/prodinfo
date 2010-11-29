@@ -7,11 +7,19 @@ See
 	http://github.com/guides/git-cheat-sheet
 	http://haml-lang.com/   see also http://nex-3.com/posts/103-haml-and-sass-are-split
 	http://blog.logeek.fr/2010/6/29/sinatra-heroku-mongodb-mongohq-notes
+	http://docs.heroku.com/mongohq
+	http://www.garrensmith.com/2010/09/11/Mongoid-sinatra.html
+
+	http://www.mongodb.org/display/DOCS/Ruby+External+Resources
 
 
 Stack
 	Can see heroku stack using heroku stack
 	I switched to bamboo-mri-1.9.1 using - heroku stack:migrate bamboo-mri-1.9.1
+
+
+Config
+	To see heroku config run - heroku config --long
 
 
 Debugging

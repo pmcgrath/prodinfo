@@ -13,6 +13,19 @@ require 'lib/cookie_key'
 configure do
 	# Pending ...
 	set :sessions, true
+
+	Mongoid.configure do |mongoid_configuration|
+		host = 'flame.mongohq.com'
+		port = 27045
+		database_name = 'prodinfo'
+		database_user_name = 'larry'
+		database_user_password = 'pass1'
+		
+		mongoid_configuration.database = Mongo::Connection.new(host, port).db(database_name)
+		mongoid_configuration.database.authenticate(database_user_name, database_user_password)
+		
+		mongoid_configuration.persist_in_safe_mode = true
+	end
 end
 
 
@@ -37,7 +50,7 @@ end
 
 get '/' do
 	products = Product.all
-	
+
   	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
 end
 
@@ -69,12 +82,11 @@ end
 
 
 get '/:product_alias' do
-	ensure_authorised_for_action
+	ensure_authorised_for_action	# Use a before filter instead ?
 
-	products = Product.all
-	product = products.find { |product| product.alias == params[:product_alias] }
-	
-	halt 404, "Unknown product!" if product.nil? 
+	matching_product = Product.find(:first, :conditions => { :alias => params[:product_alias] })
 
-	haml :product, :locals => { :page_title => product.name, :product => product }
+	halt 404, "Unknown product!" if matching_product.nil? 
+
+	haml :product, :locals => { :page_title => matching_product.name, :product => matching_product }
 end

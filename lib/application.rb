@@ -1,22 +1,13 @@
+require 'mongoid'
+
+
 class Application
-	attr_accessor :id, :product_id, :name
+  	include Mongoid::Document
+	include Mongoid::Timestamps
+  	field :name
+	embedded_in :product, :inverse_of => :applications
 
-	def initialize(id, product_id, name)
-		@id = id 
-		@product_id = product_id
-		@name = name
-	end
-
-	def self.all
-		result = []
-		File.open("data/applications", "r") do |the_file|
-			while (file_line = the_file.gets)
-				fields = file_line.chomp().split(',')
-				result << (Application.new fields[0], fields[1], fields[2])
-			end
-		end
-
-		result	
-	end
+	validates_presence_of :name
+	validates_uniqueness_of :name	# Not sure about this ? - do we need to configure or go egt err from db ?
 end
 
