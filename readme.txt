@@ -22,6 +22,15 @@ Config
 	To see heroku config run - heroku config --long
 
 
+Mongohq
+	http://docs.heroku.com/config-vars
+	http://support.mongohq.com/discussions/community-tips/2-logging-in-to-mongohq-for-heroku-users
+		# Have not used the heroku mongohq addon, instead i'm using an environment variable if it exists if not default to localhost
+		# This logic is based on content @ http://docs.mongohq.com/ruby-heroku-addon
+		# Added a specific database user on mongohq and added heroku config using
+		# 	heroku config:add MONGOHQ_URL=mongodb://databaseusername:databaseuserpassword@flame.mongohq.com:27045/dbname
+	http://blog.heroku.com/archives/2010/4/30/mongohq_add_on_public_beta	Transfer data in and out
+	
 Debugging
 	http://ruby.about.com/od/advancedruby/a/debugging.htm
 	http://pivotallabs.com/users/chad/blog/articles/366-ruby-debug-in-30-seconds-we-don-t-need-no-stinkin-gui-

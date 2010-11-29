@@ -15,15 +15,17 @@ configure do
 	set :sessions, true
 
 	Mongoid.configure do |mongoid_configuration|
-		host = 'flame.mongohq.com'
-		port = 27045
-		database_name = 'prodinfo'
-		database_user_name = 'larry'
-		database_user_password = 'pass1'
-		
-		mongoid_configuration.database = Mongo::Connection.new(host, port).db(database_name)
-		mongoid_configuration.database.authenticate(database_user_name, database_user_password)
-		
+		# Have not used the heroku mongohq addon, instead i'm using an environment variable if it exists if not default to localhost
+		# This logic is based on content @ http://docs.mongohq.com/ruby-heroku-addon
+		# Added a specific database user on mongohq and added heroku config using
+		# 	heroku config:add MONGOHQ_URL=mongodb://databaseusername:databaseuserpassword@flame.mongohq.com:27045/dbname
+		connection_url_as_string = ENV['MONGOHQ_URL'] || 'mongodb://localhost/prodinfo'
+		connection_url = URI.parse(connection_url_as_string)
+		database_name = connection_url.path.gsub(/^\//, '')
+
+		mongoid_configuration.master = Mongo::Connection.new(connection_url.host, connection_url.port).db(database_name)
+		mongoid_configuration.master.authenticate(connection_url.user, connection_url.password) if connection_url.user
+
 		mongoid_configuration.persist_in_safe_mode = true
 	end
 end
