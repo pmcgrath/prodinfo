@@ -4,6 +4,8 @@ require 'mongoid'
 class User
 	include Mongoid::Document
 	include Mongoid::Timestamps
+	include Mongoid::Versioning
+
 	field :name
 	field :user_name
 	field :password_salt
@@ -24,7 +26,7 @@ class User
 	end
 
 	def self.authenticate(user_name, clear_password)
-		matching_user = User.find(:first, :conditions => { :user_name => user_name })
+		matching_user = User.where(:user_name => user_name).first
 		return false	unless matching_user
 
 		return matching_user.password_match?(clear_password)
@@ -42,4 +44,3 @@ class User
 		Digest::SHA1.hexdigest([password, password_salt].join)
   	end
 end
-

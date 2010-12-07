@@ -1,15 +1,18 @@
 !!! Strict
-%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+%html{:xmlns => 'http://www.w3.org/1999/xhtml'}
 	%head
-		%title&= page_title
-		%link{:href => "default.css", :rel => "stylesheet", :type => "text/css"}
-		%script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
+		%title= page_title
+		%script{:type => 'text/javascript', :src => '/jquery-1.4.4.js'}
+		%link{:href => '/default.css', :rel => 'stylesheet', :type => 'text/css'}
 	%body
 		#header
-			%a{:href => "/"}= 'Home'
-			#user= user_name
+			%a{:href => '/'}= 'Home'
+			- if authenticated?
+				#user= user_name
+				%a.logout{:href => '/logout'}= 'Log out'
+			- else
+				%a.login{:href => '/login'}= 'Log in'
 		#pagecontent
 			= yield
 		#footer
 			footer ...
-			

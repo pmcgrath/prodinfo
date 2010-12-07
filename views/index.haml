@@ -1,23 +1,8 @@
 %br
+%h1 Product Information
 
-:javascript
-	jQuery(function() {
-		$('#new_application_div').hide();
-
-		$('#add_application_button').click(function() { $('#new_application_div').show('slow'); })
-	});
-
-%h1 Products
-- for product in products
-	%a{:href => "/#{product.alias}"}&= product.name
-	%br
-
-%input{:type => "button", :name => "add_application_button", :id => "add_application_button", :value => "Add application"}
-
-#new_application_div
-	%form{:action => "/", :method => "post"}
-		%label{:for => "product_name"} New product name :
-		%input{:type => "textbox", :name => "product_name", :id => "product_name"}
-		%input{:type => "submit", :value => "Add"}
-
+%a{:href => '/products' }= 'Products'
 %br
+%a{:href => '/releasenotes' }= 'Release notes'
+
+

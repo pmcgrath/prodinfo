@@ -6,14 +6,13 @@ require 'rubygems'
 require 'sinatra'
 require 'lib/product'
 require 'lib/application'
+require 'lib/setting'
 require 'lib/user'
-require 'lib/cookie_key'
 
 
 configure do
 	# Pending ...
 	set :sessions, true
-
 	Mongoid.configure do |mongoid_configuration|
 		# Have not used the heroku mongohq addon, instead i'm using an environment variable if it exists if not default to localhost
 		# This logic is based on content @ http://docs.mongohq.com/ruby-heroku-addon
@@ -31,42 +30,52 @@ configure do
 end
 
 
-helpers do
+helpers do	
 	def user_name
-		session[CookieKey::User_name]
+		session[:user_name]
+	end
+	
+	def user_name
+		session[:user_name]
 	end
 
-	def logged_in?
+	def authenticated?
 		!user_name().nil?
 	end
 
-	def ensure_authorised_for_action
-		redirect '/login', 301 unless logged_in?
+	def store_user_name(user_name)
+		session[:user_name] = user_name
 	end
 
-	def set_cookie_value(key, value)
-		response.set_cookie(key, value)
+	def ensure_authorised_for_action
+		return if authenticated?
+
+		session[:pending_url] = request.path
+
+		redirect '/login', 301
 	end
+
+	def pending_url
+		session[:pending_url]
+	end
+
+	def clear_pending_url
+		session[:pending_url] = nil
+	end
+
+	def product_url(product)
+		"/products/#{product.alias}"
+ 	end
 end
 
 
 get '/' do
-	products = Product.all
-
-  	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
-end
-
-
-post '/' do
-	product_name = params[:product_name]
-	
-	product_name
-#  	haml :index, :locals => { :page_title => 'PROD Information', :products => products }
+	haml :index, :locals => { :page_title => 'PROD Information' }
 end
 
 
 get '/login' do
-	haml :login, :locals => { :page_title => 'Log in' }
+	haml :login, :layout => false, :locals => { :page_title => 'Log in' }
 end
 
 
@@ -77,18 +86,43 @@ post '/login' do
 	is_authenticated = User.authenticate(user_name, password)
 	redirect '/login', 302 unless is_authenticated
 
-	session[CookieKey::User_name] = user_name
+	store_user_name(user_name)
+
+	redirect_to_url = pending_url || '/'
+	clear_pending_url
 	
+	redirect redirect_to_url
+end
+
+
+get '/logout' do
+	store_user_name(nil)
 	redirect '/'
 end
 
 
-get '/:product_alias' do
+get '/products' do
+	products = Product.only(:name, :alias)	# Only bring back the product names and aliases
+
+  	haml :products, :locals => { :page_title => 'PROD Information', :products => products }
+end
+
+post '/products' do
+	new_product_name = params[:name]
+	new_product = Product.new(:name => new_product_name)
+	new_product.save()
+
+	redirect_to_url = product_url(new_product)
+	
+	redirect redirect_to_url
+end
+
+get '/products/:product_alias' do
 	ensure_authorised_for_action	# Use a before filter instead ?
 
-	matching_product = Product.find(:first, :conditions => { :alias => params[:product_alias] })
+	matching_product = Product.first(:conditions => { :alias => params[:product_alias] })
 
-	halt 404, "Unknown product!" if matching_product.nil? 
+	halt 404, 'Unknown product!' if matching_product.nil? 
 
 	haml :product, :locals => { :page_title => matching_product.name, :product => matching_product }
 end

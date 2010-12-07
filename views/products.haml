@@ -5,19 +5,19 @@
 	%a{:href => product_url(product) }= product.name
 	%br
 
-%input{:type => 'button', :name => 'add_application_button', :id => 'add_application_button', :value => 'Add application'}
+%input{:type => 'button', :name => 'new_product_button', :id => 'new_product_button', :value => 'Add new product'}
 
-#new_application_div
+#new_product_section
 	%form{:action => '/products', :method => 'post'}
-		%label{:for => 'product_name'} New product name :
-		%input{:type => 'textbox', :name => 'product_name', :id => 'product_name'}
-		%input{:type => 'submit', :value => 'Add'}
+		%label{:for => 'name'} New product name :
+		%input{:type => 'textbox', :name => 'name', :id => 'name'}
+		%input{:type => 'submit', :value => 'Add new product'}
 
 %br
 
 :javascript
 	jQuery(function() {
-		$('#new_application_div').hide();
-		$('#add_application_button').click(function() { $('#new_application_div').show('slow'); })	
+		$('#new_product_section').hide();
+		$('#new_product_button').click(function() { $('#new_product_section').show('slow'); })	
 	});
 

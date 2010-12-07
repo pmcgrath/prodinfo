@@ -1,14 +1,22 @@
-%br
-%h2 
-	Login
-	%form{:name => "loginForm", :action => "/login", :method => "post"}
-		%fieldset
-			%ol
-				%li
-					%label{:for => "user_name"} Username:
-					%input{:type => "text", :name => "user_name"}
-				%li
-					%label{:for => "user_name"} Password:
-					%input{:type => "password", :name => "password"}
-			%input{:type => "submit", :value => "Login"}
-%br
+!!! Strict
+%html{:xmlns => 'http://www.w3.org/1999/xhtml'}
+	%head
+		%title= 'Log in'
+		%script{:type => 'text/javascript', :src => '/jquery-1.4.4.js'}
+		%link{:href => '/default.css', :rel => 'stylesheet', :type => 'text/css'}
+	%body
+		#header
+			%a{:href => '/'}= 'Home'
+		#pagecontent
+			%form{:name => 'loginForm', :action => '/login', :method => 'post'}
+				%fieldset
+					%ol
+						%li
+							%label{:for => 'user_name'} Username:
+							%input{:type => 'text', :name => 'user_name'}
+						%li
+							%label{:for => 'user_name'} Password:
+							%input{:type => 'password', :name => 'password'}
+					%input{:type => 'submit', :value => 'Login'}
+		#footer
+			footer ...

@@ -8,5 +8,24 @@
 	#application__id= application._id
 	#application_name= application.name
 	%br
+	- for setting in application.settings
+		#setting__id= setting._id
+		#setting_environment= setting.environment
+		#setting_key= setting.key
+		#setting_value= setting.value
+%br
+
+#new_application_section
+	%form{:action => '/products', :method => 'post'}
+		%label{:for => 'name'} New application name :
+		%input{:type => 'textbox', :name => 'name', :id => 'name'}
+		%input{:type => 'submit', :value => 'Add new application'}
 
 %br
+
+:javascript
+	jQuery(function() {
+		$('#new_application_section').hide();
+		$('#new_application_button').click(function() { $('#new_application_section').show('slow'); })	
+	});
+
