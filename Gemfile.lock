@@ -9,7 +9,7 @@ GEM
     bson (1.1.2)
     bson_ext (1.1.2)
     builder (2.1.2)
-    haml (3.0.18)
+    haml (3.0.24)
     i18n (0.4.2)
     mongo (1.1.2)
       bson (>= 1.1.1)
@@ -19,8 +19,10 @@ GEM
       tzinfo (~> 0.3.22)
       will_paginate (~> 3.0.pre)
     rack (1.2.1)
-    sinatra (1.0)
-      rack (>= 1.0)
+    sinatra (1.1.0)
+      rack (~> 1.1)
+      tilt (~> 1.1)
+    tilt (1.1)
     tzinfo (0.3.23)
     will_paginate (3.0.pre2)
 
@@ -30,6 +32,6 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (>= 1.0.4)
-  haml (= 3.0.18)
+  haml (= 3.0.24)
   mongoid (>= 2.0.0.beta.17)
-  sinatra (= 1.0)
+  sinatra (= 1.1)
